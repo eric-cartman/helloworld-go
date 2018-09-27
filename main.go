@@ -1,15 +1,15 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 )
 
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println("hello, world!")
-		fmt.Fprint(w, "hello, world!")
+		w.Header().Set("Content-Type", "application/json")
+		w.Header().Set("Content-Length", "100000")
+		panic("I panicked")
 	})
 
 	log.Fatal(http.ListenAndServe(":8080", nil))
